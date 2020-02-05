@@ -1,12 +1,12 @@
 version: '3'
 services:
-  vuesplash_web:
-    build: .
-    volumes:
-      - ./web:/var/www/html/vuesplash
-    ports:
-      - 8081:8081
-      - 3000:3000
+  # vuesplash_web:
+  #   build: .
+  #   volumes:
+  #     - ./web:/var/www/html/vuesplash
+  #   ports:
+  #     - 8081:8081
+  #     - 3000:3000
   vuesplash_database:
     image: postgres:11-alpine
     restart: always

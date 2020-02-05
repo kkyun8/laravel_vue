@@ -25,6 +25,8 @@
 export default {
   computed: {
     isLogin () {
+
+      
       return this.$store.getter['auth/check']
     },
     username () {
