@@ -70,10 +70,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    // TODO: ルーティン変更 middleware api -> web
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
+             ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
