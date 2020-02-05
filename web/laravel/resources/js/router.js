@@ -4,14 +4,21 @@ import VueRouter from 'vue-router'
 import PhotoList from './pages/PhotoList.vue'
 import Login from  './pages/Login.vue'
 
+import store from './store'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/', component: PhotoList
-  },
-  {
-    path: '/login', component: Login
+    path: '/login', component: Login,
+    beforeEnter (to, from, next) {
+      //checkした結果がnullの場合、トップページに遷移
+      if (store.getters['auth/check']) {
+        next('/')
+      } else {
+        next()
+      }
+    }
   }
 ]
 

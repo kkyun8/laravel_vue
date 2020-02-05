@@ -19,18 +19,27 @@
         </RouterLink>
       </div>
     </div>
+    <div class="navbar__menu">
+      <div v-if="isLogin" class="navbar__item">
+        <!-- 中略 -->
+      </div>
+      <span v-if="isLogin" class="navbar__item">
+        {{ username }}
+      </span>
+      <div v-else class="navbar__item">
+        <!-- 中略 -->
+      </div>
+    </div>
   </nav>
 </template>
 <script>
 export default {
   computed: {
     isLogin () {
-
-      
-      return this.$store.getter['auth/check']
+      return this.$store.getters['auth/check']
     },
     username () {
-      return this.$store.getter['auth/username']
+      return this.$store.getters['auth/username']
     }
   }
 }
