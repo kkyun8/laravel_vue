@@ -26,6 +26,8 @@ return [
     |
     */
 
+    //TODO: Storage::cloud()を読んだ場合以下の設定を参照する
+    
     'cloud' => env('FILESYSTEM_CLOUD', 's3'),
 
     /*

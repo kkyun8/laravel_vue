@@ -24,6 +24,7 @@
 
 /database/
 
-
+/web/laravel/public/mix-manifest.json
+/web/laravel/public/js/app.js
 
 
