@@ -44,4 +44,26 @@ class Photo extends Model
 
       return $id;
     }
+
+    public function owner()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+    }
+
+    public function getUrlAttribute()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+    }
+
+    protected $appends = [
+      'url',
+    ];
+    protected $hidden = [
+      'user_id', 'filename',
+      self::CREATED_AT, self::UPDATED_AT,
+    ];
+    protected $visible = [
+      'id', 'owner', 'url',
+    ];
+    protected $perPage = 15;
 }

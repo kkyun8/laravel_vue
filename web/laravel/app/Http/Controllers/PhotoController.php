@@ -14,14 +14,17 @@ class PhotoController extends Controller
     public function __construct()
     {
         // 認証が必要
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'download']);
     }
 
-   /**
-     * 写真投稿
-     * @param StorePhoto $request
-     * @return \Illuminate\Http\Response
-     */…
+    public function index()
+    {
+        $photos = Photo::with(['owner'])
+            ->orderBy(Photo::CREATED_AT, 'desc')->paginate();
+    
+        return $photos;
+    }
+
     public function create(StorePhoto $request)
     {
         // 投稿写真の拡張子を取得する
@@ -50,5 +53,20 @@ class PhotoController extends Controller
         }
         //status>>201 created
         return response($photo, 201);
+    }
+
+    public function download(Photo $photo)
+    {
+      if (! Storage::cloud()->exists($photo->filename)) {
+        abort(404);
+      }
+
+      $disposition = 'attachment; filename="' . $photo->filename . '"';
+      $headers = [
+          'Content-Type' => 'application/octet-stream',
+          'Content-Disposition' => $disposition,
+      ];
+
+      return response(Storage::cloud()->get($photo->filename), 200, $headers);
     }
 }
