@@ -5,7 +5,7 @@ import PhotoList from './pages/PhotoList.vue'
 import PhotoDetail from './pages/PhotoDetail.vue'
 import Login from  './pages/Login.vue'
 import SystemError from './pages/errors/System.vue'
-
+import Test from './components/test.vue'
 import store from './store'
 
 Vue.use(VueRouter)
@@ -30,6 +30,10 @@ const routes = [
       return { page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1 }
     }
   },
+  // {
+  //    path: '/',
+  //   component: Test,
+  // },
   {
     path: '/photos/:id',
     component: PhotoDetail,
